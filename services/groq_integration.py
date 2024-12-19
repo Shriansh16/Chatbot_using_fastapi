@@ -1,8 +1,11 @@
 from groq import Groq
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def query_groq(message: str) -> str:
     try:
-        client = Groq()
+        client = Groq(api_key=os.getenv('GROQ_API_KEY'))
         completion = client.chat.completions.create(
             model="llama-3.1-70b-versatile",
             messages=[
